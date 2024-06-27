@@ -1,0 +1,6 @@
+_sourceCategory=pacepro/log/source/category "/api/data" "responseTime"
+| parse "responseTime=*ms" as responseTime
+| where responseTime > 3000
+| timeslice by 10m
+| count by _timeslice
+| where _count > 5
